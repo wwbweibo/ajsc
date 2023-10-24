@@ -1,5 +1,6 @@
 import os
 import cv2
+import time
 from os import path
 
 adb_path = '/Users/gongsi/Library/Android/sdk/platform-tools/adb'
@@ -25,3 +26,16 @@ def preset_image_loader():
     phone_select = cv2.imread(path.join('images','phone-select.png'), cv2.IMREAD_GRAYSCALE)
     phone_close = cv2.imread(path.join('images', 'phone-close.png'), cv2.IMREAD_GRAYSCALE)
     return chat_continue, chat_select, chat_begin, chat_begintask, phone_select, phone_close
+
+def start_game():
+    os.system(adb_path + ' shell monkey -p com.miHoYo.hkrpg -c android.intent.category.LAUNCHER 1')
+    # wait for 30 seconds
+    time.sleep(30)
+    # do tap on any position
+    os.system(adb_path + ' shell input tap 500 500')
+    # make sure game stated
+    time.sleep(30)
+    return 0, 0
+
+def game_chat(x, y):
+    click_at(x, y)

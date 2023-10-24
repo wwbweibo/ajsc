@@ -5,7 +5,7 @@ import time
 
 from image import check_game_status
 
-from pc import start_game, capture_image, click_at, preset_image_loader, game_chat
+from android import start_game, capture_image, click_at, preset_image_loader, game_chat
 
 if __name__ == "__main__":
     chat_continue, chat_select, chat_begin, chat_begintask, phone_select, phone_close = preset_image_loader()
