@@ -33,12 +33,12 @@ def start_game():
     return rect[0], rect[1]
 
 def capture_image():
+    time.sleep(1)
     image = ImageGrab.grab(rect)
     # 将PIL图像转换为numpy数组
     numpy_image = np.array(image)
     # 将RGB格式转换为BGR格式
     gray = cv2.cvtColor(numpy_image, cv2.COLOR_RGB2GRAY)
-    time.sleep(0.5)
     return gray
 
 def click_at(x, y):
@@ -62,4 +62,34 @@ def preset_image_loader():
     chat_begintask = cv2.imread(path.join('pc_images', 'chat-begintask.png'), cv2.IMREAD_GRAYSCALE)
     phone_select = cv2.imread(path.join('pc_images','phone-select.png'), cv2.IMREAD_GRAYSCALE)
     phone_close = cv2.imread(path.join('pc_images', 'phone-close.png'), cv2.IMREAD_GRAYSCALE)
-    return chat_continue, chat_select, chat_begin, chat_begintask, phone_select, phone_close
+    item_submit = cv2.imread(path.join('pc_images', 'item-submit.png'), cv2.IMREAD_GRAYSCALE)
+    return [('chat_continue', chat_continue, chat_continue_action), 
+            ('chat_select', chat_select, chat_select_action), 
+            ('chat_begintask', chat_begintask, chat_begintask_action),
+            ('chat_begin', chat_begin, chat_begin_action), 
+            ('phone_select', phone_select, phone_select_action), 
+            ('phone_close', phone_close, phone_close_action),
+            ('item_submit', item_submit, item_submit_action)]
+    # return chat_continue, chat_select, chat_begin, chat_begintask, phone_select, phone_close, item_submit
+
+
+def chat_continue_action(x, y):
+    click_at(x, y)
+
+def chat_select_action(x, y):
+    click_at(x, y)
+
+def chat_begin_action(x, y):
+    game_chat(x, y)
+
+def chat_begintask_action(x, y):
+    click_at(x, y)
+
+def phone_select_action(x,y):
+    click_at(x, y)
+
+def phone_close_action(x, y):
+    click_at(x, y)
+
+def item_submit_action(x, y):
+    click_at(x, y)

@@ -25,7 +25,16 @@ def preset_image_loader():
     chat_begintask = cv2.imread(path.join('images', 'chat-begintask.png'), cv2.IMREAD_GRAYSCALE)
     phone_select = cv2.imread(path.join('images','phone-select.png'), cv2.IMREAD_GRAYSCALE)
     phone_close = cv2.imread(path.join('images', 'phone-close.png'), cv2.IMREAD_GRAYSCALE)
-    return chat_continue, chat_select, chat_begin, chat_begintask, phone_select, phone_close
+    item_submit = cv2.imread(path.join('pc_images', 'item-submit.png', cv2.IMREAD_GRAYSCALE))
+    return [('chat_continue', chat_continue, chat_continue_action), 
+            ('chat_select', chat_select, chat_select_action), 
+            ('chat_begintask', chat_begintask, chat_begintask_action),
+            ('chat_begin', chat_begin, chat_begin_action), 
+            ('phone_select', phone_select, phone_select_action), 
+            ('phone_close', phone_close, phone_close_action),
+            ('item_submit', item_submit, item_submit_action)]
+    # return chat_continue, chat_select, chat_begin, chat_be
+    # return chat_continue, chat_select, chat_begin, chat_begintask, phone_select, phone_close, item_submit
 
 def start_game():
     os.system(adb_path + ' shell monkey -p com.miHoYo.hkrpg -c android.intent.category.LAUNCHER 1')
@@ -38,4 +47,25 @@ def start_game():
     return 0, 0
 
 def game_chat(x, y):
+    click_at(x, y)
+
+def chat_continue_action(x, y):
+    click_at(x, y )
+
+def chat_select_action(x, y):
+    click_at(x, y)
+
+def chat_begin_action(x, y): 
+    click_at(x, y)
+
+def chat_begintask_action(x, y):
+    click_at(x, y)
+
+def phone_select_action(x,y):
+    click_at(x, y)
+
+def phone_close_action(x, y):
+    click_at(x, y)
+
+def item_submit_action(x, y):
     click_at(x, y)
